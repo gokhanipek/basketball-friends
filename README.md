@@ -11,3 +11,7 @@ ve
 ### `npm start`
 diyerek calistirabilirsiniz. 
 
+### `To Do:`
+1- Routing eklenmesi, 
+2- my profile/home/friendfinder sayfalarinin olusturulmasi
+3- React Eventlerinin kullanimi
