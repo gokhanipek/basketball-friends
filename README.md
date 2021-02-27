@@ -5,7 +5,7 @@ Bu proje [Create React App](https://github.com/facebook/create-react-app) ile ol
 ## Calistirmak icin
 
 Projeyi 
-### git clone https://github.com/gokhanipek/basketball-friends.git diyerek
+### `git clone https://github.com/gokhanipek/basketball-friends.git diyerek`
 ### `npm install`
 ve
 ### `npm start`
