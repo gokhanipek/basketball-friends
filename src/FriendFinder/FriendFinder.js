@@ -9,6 +9,10 @@ export class FriendFinder extends Component {
         fetch('')
     }
 
+    fetchHumans = () => {
+        fetch('sometyhing broken ohh geez oh my god');
+    }
+
 
     render() {
         const { friendPhoto } = this.props;
