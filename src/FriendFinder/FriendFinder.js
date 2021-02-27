@@ -4,6 +4,12 @@ import Friend from '../Friend';
 import './FriendFinder.scss';
 
 export class FriendFinder extends Component {
+
+    fetchPeople = () => {
+        fetch('')
+    }
+
+
     render() {
         const { friendPhoto } = this.props;
         return (
