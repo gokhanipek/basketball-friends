@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
+import './Nav.scss'
+
 export class Nav extends Component {
     render() {
         const { home, myProfile } = this.props;

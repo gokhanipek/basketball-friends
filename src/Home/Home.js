@@ -22,8 +22,10 @@ export class Home extends Component {
                 <img className="home-logo" src={Logo} alt='logo'/>
                 <h2 className="title">Basketball Friends</h2>
                 <span>Find some friends!</span>
-                <input onChange={this.onChangeHandler} />
-                <button onClick={() => this.onClickHandler()}> Submit </button>
+                <div className="input-wrapper">
+                    <input onChange={this.onChangeHandler} placeholder="Enter your name..." />
+                    <button onClick={() => this.onClickHandler()} disabled={!this.state.userName}> Enter </button>
+                </div>
             </div>
         )
     }
