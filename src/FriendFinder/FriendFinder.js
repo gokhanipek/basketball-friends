@@ -2,6 +2,25 @@ import React, { Component } from "react";
 
 import "./FriendFinder.scss";
 
+
+class AddOrRemoveFriend extends Component {
+  render(){
+    const { text, clickHandler } = this.props;
+    return (
+      <button onClick={clickHandler}>{text}</button>
+    )
+  }
+}
+
+// class RemoveFriend extends Component {
+//   render(){
+//     const { text, clickHandler } = this.props;
+//     return (
+//       <button onClick={clickHandler}>{text}</button>
+//     )
+//   }
+// }
+
 export class FriendFinder extends Component {
 
   state = {
@@ -16,7 +35,11 @@ export class FriendFinder extends Component {
   };
 
   addFriendClickHandler = (item) => {
-    this.setState({ friends: [...this.state.friends, item ] })
+    this.state.friends.some(friend => friend.cell === item.cell ) ?
+     this.setState({friends: [...this.state.friends] }) :
+     this.setState({friends : [...this.state.friends, item]})
+
+     this.fetchPeople();
   }
 
   removeFriendClickHandler= (item) => {
@@ -30,25 +53,33 @@ export class FriendFinder extends Component {
   render() {
     return (
       <div className="friend-finder">
-        <div>
-        {this.state.data.map(item => 
-            <>
-                <img src={item.picture.large} alt="person" />
-                <h2>{item.name.first} {item.name.last}</h2>
-                <h3>Nationality: {item.nat} </h3>
-                <button onClick={() => this.addFriendClickHandler(item)}> Add as friend!</button>
-            </>
-            )}
+        <div className="random-person">
+          {this.state.data.map(item => 
+              <>
+                  <img className="something" src={item.picture.large} alt="person" />
+                  <h2>{item.name.first} {item.name.last}</h2>
+                  <h3>Nationality: {item.nat} </h3>
+                  <AddOrRemoveFriend 
+                    text='Add as Friend' 
+                    person={item} 
+                    clickHandler={() => this.addFriendClickHandler(item)}
+                  />
+              </>
+              )}
+          <button onClick={this.fetchPeople}>Find a friend!</button>
         </div>
-        <button onClick={this.fetchPeople}>Find a friend!</button>
-        {this.state.friends.map(item => 
-            <div className="friend">
-                <img src={item.picture.large} alt="friend" />
-                <span>{item.name.first} {item.name.last}</span>  
-                <button onClick={() => this.removeFriendClickHandler(item)}>Remove Friend</button>
-            </div>
-            )
-        }
+        <div className="friends-wrapper">
+          {this.state.friends.map(item => 
+              <div className="friend">
+                  <img src={item.picture.large} alt="friend" />
+                  <span>{item.name.first} {item.name.last}</span>  
+                  <AddOrRemoveFriend
+                    text="Remove Friend" 
+                    clickHandler={() => this.removeFriendClickHandler(item)} />
+              </div>
+              )
+          }
+        </div>
       </div>
     );
   }
