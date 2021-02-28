@@ -10,7 +10,7 @@ export class Home extends Component {
     }
     
     onClickHandler = () => {
-        this.props.history.push('./friend-finder');
+        this.props.history.push({pathname: "/friend-finder", state: {name: this.state.userName}});  //username i parametre olarak friend-finder sayfasina gonderiyoruz
     }
     
     onChangeHandler = (event) => {

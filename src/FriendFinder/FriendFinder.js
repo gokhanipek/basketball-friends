@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import "./FriendFinder.scss";
 
@@ -53,23 +53,15 @@ export class FriendFinder extends Component {
   }
  
   goToFinalPageHandler = () => {
-    console.warn(this.props.history);
-    // <Redirect to={{
-    //   pathname: "/final-page",
-    //   state: {friends: this.state.friends}
-    //   }}
-    // />
+    this.props.history.push({pathname: "/final-page", state: {name: this.props.location.state.name, friends: this.state.friends}}); //diger sayfaya router dom ile parametre gonderiyoruz
   }
-    // this.props.history.push({
-    //   pathname: "/final-page",
-    //   state: {friends: this.state.friends}
-    // })
-
 
   render() {
+    const { location } = this.props; //onceki sayfadan react-router-dom ile ilettigimiz verileri almak icin location parametresine proplardan ulasiyoruz
     return (
       <div className="friend-finder">
         <div className="random-person">
+          <h2>{location.state.name}</h2>
           {this.state.data.map(item => 
               <>
                   <img className="something" src={item.picture.large} alt="person" />
@@ -96,7 +88,7 @@ export class FriendFinder extends Component {
               )
           }
         </div>
-        <button onClick={() => <Redirect to="/final-page"/>}> Go to Final Page </button>
+        <button onClick={() => this.goToFinalPageHandler()}> Go to Final Page </button>
       </div>
     );
   }
