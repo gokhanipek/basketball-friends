@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import {Redirect, withRouter} from 'react-router-dom';
+
 import "./FriendFinder.scss";
 
 
@@ -42,13 +44,27 @@ export class FriendFinder extends Component {
      this.fetchPeople();
   }
 
-  removeFriendClickHandler= (item) => {
+  removeFriendClickHandler = (item) => {
       this.setState({ friends: this.state.friends.filter(
           friend => {
               return friend.cell !== item.cell
           }
       ) })
   }
+ 
+  goToFinalPageHandler = () => {
+    console.warn(this.props.history);
+    // <Redirect to={{
+    //   pathname: "/final-page",
+    //   state: {friends: this.state.friends}
+    //   }}
+    // />
+  }
+    // this.props.history.push({
+    //   pathname: "/final-page",
+    //   state: {friends: this.state.friends}
+    // })
+
 
   render() {
     return (
@@ -80,9 +96,11 @@ export class FriendFinder extends Component {
               )
           }
         </div>
+        <button onClick={() => <Redirect to="/final-page"/>}> Go to Final Page </button>
       </div>
     );
   }
+
 }
 
-export default FriendFinder;
+export default withRouter(FriendFinder);

@@ -10,6 +10,7 @@ export class MyProfile extends Component {
         const focusHandler = (event) => {
             this.setState({ targetValue: event.target.value })
         }
+
         return (
         <div className="my-profile">
             <div>My info</div>
